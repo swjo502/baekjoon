@@ -6,19 +6,24 @@
 #pragma warning(disable:6031)
 
 int main() {
-	int l;
-	long long int sum = 0;
-	char arr[6];
+	int l, arr2[51];
+	long long sum = 0, mul = 1;
+	char arr[51];
 
 	scanf("%d", &l);
 	scanf("%s", arr);
 
 	for (int i = 0; i < l; i++) {
-		sum += (arr[i] - 96) *pow(31, i);
+		arr2[i] = arr[i] - 96;
 	}
-	sum %= modular;
 
-	printf("%lld", sum);
+	for (int i = 0; i < l; i++) {
+		sum += arr2[i] * mul;
+		mul = (mul * 31) % modular;
+		sum %= modular;
+	}
+
+	printf("%lld", sum % modular);
 
 	return 0;
 }
